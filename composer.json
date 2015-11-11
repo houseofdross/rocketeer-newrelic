@@ -1,0 +1,30 @@
+{
+    "name": "hod/rocketeer-newrelic",
+    "description": "Newrelic notification plugin for rocketeer",
+    "license": "MIT",
+    "keywords": [
+        "rocketeer",
+        "newrelic"
+    ],
+    "authors": [
+        {
+            "name": "Matthew Wheeler",
+            "email": "matt@yurisko.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "anahkiasen/rocketeer": "3.0.*@dev",
+        "guzzlehttp/guzzle": "6.0.*"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "~4.4",
+        "mockery/mockery": "0.9.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rocketeer\\Plugins\\Newrelic\\": "src/Newrelic"
+        }
+    }
+}
