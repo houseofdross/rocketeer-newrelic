@@ -26,11 +26,5 @@
         "psr-4": {
             "Rocketeer\\Plugins\\Newrelic\\": "src/Newrelic"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Rocketeer\\Plugins\\Acme\\": "tests",
-            "Rocketeer\\": "vendor/anahkiasen/rocketeer/tests"
-        }
     }
 }

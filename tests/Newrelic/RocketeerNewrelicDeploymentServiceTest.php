@@ -6,7 +6,7 @@ use GuzzleHttp\Psr7\Response;
 use \Mockery as m;
 
 
-class NewrelicDeploymentServiceTest extends \PHPUnit_Framework_TestCase
+class RocketeerNewrelicDeploymentServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testNotifyUsesCorrectApiKey()
     {
@@ -20,7 +20,7 @@ class NewrelicDeploymentServiceTest extends \PHPUnit_Framework_TestCase
             'x-api-key' => 'testApiKey'
         ];
 
-        $expectedRequest = new Request('POST', NewrelicDeploymentService::API_URL, $expectedHeaders);
+        $expectedRequest = new Request('POST', RocketeerNewrelicDeploymentService::API_URL, $expectedHeaders);
 
         $client = m::mock('\GuzzleHttp\Client');
         $client
@@ -28,7 +28,7 @@ class NewrelicDeploymentServiceTest extends \PHPUnit_Framework_TestCase
             ->withArgs([m::mustBe($expectedRequest), $expectedPayload])
             ->andReturn(new Response('201'));
 
-        $service = new NewrelicDeploymentService('testApiKey', $client);
+        $service = new RocketeerNewrelicDeploymentService('testApiKey', $client);
         $service->notify('testApplicationId');
     }
 
@@ -49,7 +49,7 @@ class NewrelicDeploymentServiceTest extends \PHPUnit_Framework_TestCase
             ->withArgs([m::any(), $expectedPayload])
             ->andReturn(new Response('201'));
 
-        $service = new NewrelicDeploymentService('testApiKey', $client);
+        $service = new RocketeerNewrelicDeploymentService('testApiKey', $client);
         $service->notify('testApplicationId', 'testUser', 'testDescription', 'testRevision');
     }
 

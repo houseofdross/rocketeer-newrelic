@@ -5,8 +5,7 @@ use GuzzleHttp\ClientInterface as ClientInterface;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Request;
 
-
-class NewrelicDeploymentService
+class RocketeerNewrelicDeploymentService
 {
 
     const API_URL = 'https://api.newrelic.com/deployments.xml';
