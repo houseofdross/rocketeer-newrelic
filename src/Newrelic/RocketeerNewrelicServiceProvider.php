@@ -3,9 +3,10 @@ namespace Rocketeer\Plugins\Newrelic;
 
 use Illuminate\Support\ServiceProvider;
 use Rocketeer\Facades\Rocketeer;
+use Illuminate\Support\Str;
 
 /**
- * Register the Campfire plugin with the Laravel framework and Rocketeer
+ * Register the plugin with Rocketeer
  */
 class RocketeerNewrelicServiceProvider extends ServiceProvider
 {
