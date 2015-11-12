@@ -56,6 +56,7 @@ class RocketeerNewrelic extends AbstractPlugin
     {
         $config = $this->app['newrelic']->getConfig();
         $environment = $task->getOption('on');
+        $branch = $task->getOption('branch');
 
         // Only deploy when the environment tag is set and matches the --on flag given
         if ($environment != NULL && $environment == $config['environment']) {
@@ -63,7 +64,7 @@ class RocketeerNewrelic extends AbstractPlugin
             $applicationIdCollection = $config['applicationIds'];
             $user = $config['user'];
             $description = $config['description'];
-            $revision = $config['revision'];
+            $revision = ($branch) ? $branch : $config['revision'];
 
             foreach ($applicationIdCollection as $applicationId) {
                 $service = new RocketeerNewrelicDeploymentService($apiKey);
