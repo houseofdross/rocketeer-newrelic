@@ -1,26 +1,27 @@
-# Rocketeer Acme Plugin
+# Newrelic Rocketeer Plugin
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/:vendor/:package?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[![Build Status](http://img.shields.io/travis/:vendor/:package.svg?style=flat-square)](https://travis-ci.org/:vendor/:package)
-[![Latest Stable Version](http://img.shields.io/packagist/v/anahkiasen/:package.svg?style=flat-square)](https://packagist.org/:packages/anahkiasen/:package)
-[![Total Downloads](http://img.shields.io/packagist/dt/anahkiasen/:package.svg?style=flat-square)](https://packagist.org/:packages/anahkiasen/:package)
-[![Support via Gittip](http://img.shields.io/gittip/Anahkiasen.svg?style=flat-square)](https://www.gittip.com/Anahkiasen/)
-
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+This plugin allows you to configure a deployment to a specific target to notify a NewRelic account that you have just
+completed a deployment. This can be a handy tool for tracking your deployments and updating your monitoring systems
+so you can see performance metrics before and after.
 
 ## Install
 
-Via Composer
+To setup add this to your `composer.json` and update :
 
-``` bash
-$ rocketeer plugin:install :vendor/:package_name
+```json
+"hod/rocketeer-newrelic": "dev-master"
 ```
+
+In your applications .rocketeer/config.php, add `Rocketeer\Plugins\Newrelic\RocketeerNewrelic` to the plugin array.
+
+Fill out the configuration as outlined in Usage below and you are ready to go.
 
 ## Usage
 
-
+- To insert configuration into userland, run `rocketeer plugin:config hod/rocketeer-newrelic`
+- Add at a minimum your API key, and the Newrelic application ID (or ID's in case you are deploying 2 or more applications at once) you wish to notify upon deploy
+- Define the environment target it should run on. This matches your --on='env' tag when you deploy.
+- Add optional extras like user, description of release and the version. 
 
 ## Testing
 

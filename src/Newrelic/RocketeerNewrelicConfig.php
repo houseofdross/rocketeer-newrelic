@@ -11,7 +11,7 @@ class RocketeerNewrelicConfig
         $this->config = $config;
 
         // Check we have all the config options we need
-        foreach (array('apiKey', 'applicationId') as $item) {
+        foreach (array('apiKey', 'applicationIds') as $item) {
             if (!isset($this->config[$item]) || !$this->config[$item]) {
                 throw new \Exception('Unable to find config item: '.$item);
             }

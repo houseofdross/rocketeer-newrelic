@@ -27,7 +27,7 @@ class RocketeerNewrelic extends AbstractPlugin
      */
     public function register(Container $app)
     {
-        $app->bind('newrelic-config', function ($app) {
+        $app->bind('newrelic', function ($app) {
             return new RocketeerNewrelicConfig($app['config']->get('rocketeer-newrelic::config'));
         });
         return $app;
@@ -42,11 +42,9 @@ class RocketeerNewrelic extends AbstractPlugin
      */
     public function onQueue(TasksHandler $queue)
     {
-        $afterDeploy = function() {
-            $this->afterDeploy();
-        };
-
-        $queue->addTaskListeners('deploy', 'after', $afterDeploy, 0, true);
+        $queue->after('deploy', function ($task) {
+            $this->afterDeploy($task);
+        });
     }
 
     /**
@@ -54,19 +52,24 @@ class RocketeerNewrelic extends AbstractPlugin
      *
      * @throws \Exception
      */
-    private function afterDeploy()
+    private function afterDeploy($task)
     {
-        $config = $this->app['newrelic-config']->getConfig();
+        $config = $this->app['newrelic']->getConfig();
+        $environment = $task->getOption('on');
 
-        $apiKey = $config['apiKey'];
-        $applicationIdCollection = $config['applicationId'];
-        $user = $config['user'];
-        $description = $config['description'];
-        $revision = $config['revision'];
+        // Only deploy when the environment tag is set and matches the --on flag given
+        if ($environment != NULL && $environment == $config['environment']) {
+            $apiKey = $config['apiKey'];
+            $applicationIdCollection = $config['applicationIds'];
+            $user = $config['user'];
+            $description = $config['description'];
+            $revision = $config['revision'];
 
-        foreach ($applicationIdCollection as $applicationId) {
-            $service = new RocketeerNewrelicDeploymentService($apiKey);
-            $service->notify($applicationId, $user, $description, $revision);
+            foreach ($applicationIdCollection as $applicationId) {
+                $service = new RocketeerNewrelicDeploymentService($apiKey);
+                $service->notify($applicationId, $user, $description, $revision);
+                $task->command->info('Newrelic notified for app: '.$applicationId);
+            }
         }
     }
 }
