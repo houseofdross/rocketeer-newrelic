@@ -54,7 +54,7 @@ class RocketeerNewrelic extends AbstractPlugin
      */
     private function afterDeploy()
     {
-        $config = $this->app['newrelic-config']->getConfig();
+        $config = $this->app['newrelic']->getConfig();
 
         $apiKey = $config['apiKey'];
         $applicationIdCollection = $config['applicationId'];
