@@ -42,11 +42,9 @@ class RocketeerNewrelic extends AbstractPlugin
      */
     public function onQueue(TasksHandler $queue)
     {
-        $afterDeploy = function() {
+        $queue->after('deploy', function ($task) {
             $this->afterDeploy();
-        };
-
-        $queue->addTaskListeners('deploy', 'after', $afterDeploy, 0, true);
+        });
     }
 
     /**
