@@ -3,7 +3,6 @@ namespace Rocketeer\Plugins\Newrelic;
 
 use Illuminate\Support\ServiceProvider;
 use Rocketeer\Facades\Rocketeer;
-use Illuminate\Support\Str;
 
 /**
  * Register the plugin with Rocketeer
