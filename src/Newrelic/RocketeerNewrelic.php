@@ -27,7 +27,7 @@ class RocketeerNewrelic extends AbstractPlugin
      */
     public function register(Container $app)
     {
-        $app->bind('newrelic-config', function ($app) {
+        $app->bind('newrelic', function ($app) {
             return new RocketeerNewrelicConfig($app['config']->get('rocketeer-newrelic::config'));
         });
         return $app;
