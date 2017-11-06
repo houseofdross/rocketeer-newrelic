@@ -9,7 +9,8 @@
     "authors": [
         {
             "name": "Matthew Wheeler",
-            "email": "matt@yurisko.net"
+            "email": "matt@yurisko.net",
+            "role": "Maintainer"
         }
     ],
     "require": {
